@@ -1,0 +1,85 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/*
+  Theme tokens: navy and coral.
+  Light values live on :root. The dark values replace them for visitors
+  whose device is set to dark mode. Change a color here and the whole
+  site follows.
+*/
+:root {
+  --background: #eff2f7;
+  --foreground: #0f1f3d;
+  --card: #f9fafc;
+  --card-foreground: #0f1f3d;
+  --muted-foreground: #51607a;
+  --border: #cbd3e1;
+  --primary: #c8402c;
+  --primary-foreground: #ffffff;
+  --ring: #c8402c;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a1630;
+    --foreground: #eaf0fa;
+    --card: #101e3f;
+    --card-foreground: #eaf0fa;
+    --muted-foreground: #9aa9c4;
+    --border: #24365f;
+    --primary: #ff7b67;
+    --primary-foreground: #0a1630;
+    --ring: #ff7b67;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-ring: var(--ring);
+
+  --font-display: "Bricolage Grotesque Variable", "Helvetica Neue", Arial,
+    sans-serif;
+  --font-sans: "Public Sans Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 1rem;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/* Visitors who ask for reduced motion get the modal without animation. */
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="dialog-overlay"],
+  [data-slot="dialog-content"] {
+    animation: none !important;
+  }
+}
